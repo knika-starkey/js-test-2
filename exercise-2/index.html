@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    span {
+      position: absolute;
+      transition: all 0.5s;
+    }
+    .unvisible {
+      visibility: hidden;
+    }
+    .round {
+      transform: rotate(360deg);
+    }
+  </style>
+  <body>
+    <div id="block"></div>
+    <script>
+      let textArr = ["everywhere", "rainbow", "air", "colours"];
+      let timer;
+      let text = textArr[Math.floor(Math.random() * textArr.length)];
+
+      let elem = document.getElementById("block");
+      for (let i = 0; i < text.length; i++) {
+        elem.innerHTML += `<span class="unvisible" style="left: ${
+          10 + i * 11
+        }px">${text[i]}</span>`;
+      }
+      let letters = document.getElementsByTagName("span");
+      console.log(letters);
+      function addTextFunc() {
+        let pos = 0;
+        function addLetter() {
+          letters[pos].classList.remove("unvisible");
+          pos++;
+          if (letters.length <= pos) {
+            clearInterval(timer);
+          }
+        }
+        timer = setInterval(addLetter, 1000);
+      }
+      function delTextFunc() {
+        let pos = 0;
+        function delLetter() {
+          letters[pos].classList.add("round");
+          setTimeout(letters[pos].classList.add("unvisible"), 250);
+          pos++;
+          if (letters.length <= pos) {
+            clearInterval(timer);
+          }
+        }
+        timer = setInterval(delLetter, 1000);
+      }
+      addTextFunc();
+      setTimeout(delTextFunc, letters.length * 1000);
+    </script>
+  </body>
+</html>
