@@ -21,13 +21,13 @@ let colors = [
   "plum",
   "violet",
 ];
-let phrase = "1 2 3 4 5";
-let wordsArr = shuffle(phrase.split(" "));
+let phrase = "1, 2, 3, 4, 5";
+let wordsArr = shuffle(phrase.split(", "));
 document.write(`<div class="col l12 s12 center colCustom colC" id="c3">
   <div class="container">`);
 for (let i = 0; i < wordsArr.length; i++) {
   document.write(
-    `<div id="drag${i}" class="card" style="background-color:${
+    `<div id="drag${wordsArr[i]}" class="card" style="background-color:${
       colors[Math.floor(Math.random() * colors.length)]
     }" draggable="true" ondragstart="drag(event)">${wordsArr[i]}</div>`
   );
@@ -39,16 +39,14 @@ function allowDrop(event) {
 }
 function drag(event) {
   event.dataTransfer.setData("text", event.target.innerHTML);
-  event.target.style.opacity = "0.4";
-
-  //
 }
 
 function drop(event) {
   event.preventDefault();
 
   let data = event.dataTransfer.getData("text");
-  dropField.innerHTML += `${data} `;
+  console.log(data);
+  dropField.appendChild(document.getElementById(`drag${data}`));
 }
 let checkButton = document.getElementById("check");
 checkButton.addEventListener("click", check);
@@ -56,7 +54,13 @@ checkButton.addEventListener("click", check);
 function check(event) {
   let str = dropField.innerText.trim();
   // console.log(str);
-  alert(str == phrase ? "ОК" : "Помилка");
+  alert(str == phrase.replaceAll(", ", "") ? "ОК" : "Помилка");
+  if (str == phrase.replaceAll(", ", "")) {
+    let numbers = dropField.getElementsByClassName("card");
+    for (let i = 0; i < numbers.length; i++) {
+      numbers[i].classList.add("right");
+    }
+  }
 }
 
 let cleanButton = document.getElementById("clean");
