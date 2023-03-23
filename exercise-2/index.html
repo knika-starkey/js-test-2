@@ -8,8 +8,11 @@
   </head>
   <style>
     span {
-      position: absolute;
       transition: all 0.5s;
+      padding: 1px;
+      margin: 1px;
+      display: inline-block;
+      min-width: 1px;
     }
     .unvisible {
       visibility: hidden;
@@ -27,9 +30,7 @@
 
       let elem = document.getElementById("block");
       for (let i = 0; i < text.length; i++) {
-        elem.innerHTML += `<span class="unvisible" style="left: ${
-          10 + i * 11
-        }px">${text[i]}</span>`;
+        elem.innerHTML += `<span class="unvisible">${text[i]}</span>`;
       }
       let letters = document.getElementsByTagName("span");
       console.log(letters);
