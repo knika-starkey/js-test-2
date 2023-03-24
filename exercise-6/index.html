@@ -22,13 +22,19 @@
     ><br /><button id="rand">Random</button>
 
     <script>
+      let n = 0;
+      let x = 0;
       let max = 29;
+      let timer;
       let step = 15;
       let randB = document.getElementById("rand");
       let c = document.getElementById("myCanvas");
       let ctx = c.getContext("2d");
+      function stop() {
+        clearInterval(timer);
+      }
       draw();
-      function draw(temp = 0) {
+      function draw(side) {
         // BG
         ctx.strokeStyle = "lightsteelblue";
         ctx.beginPath();
@@ -45,7 +51,7 @@
         //temperature
         ctx.strokeStyle = "indianred";
         ctx.beginPath();
-        ctx.roundRect(35, 35 + temp, 10, 470 - temp, [50]);
+        ctx.roundRect(35, 35 + x, 10, 470 - x, [50]);
         ctx.fillStyle = "tomato";
         ctx.fill();
         ctx.stroke();
@@ -64,11 +70,14 @@
           ctx.fill();
           ctx.stroke();
         }
+
+        n == x ? stop() : side ? x++ : x--;
       }
       randB.addEventListener("click", change);
       function change() {
-        let n = Math.floor(Math.random() * (max * 15));
-        draw(n);
+        n = Math.floor(Math.random() * (max * 15));
+        // console.log(x < n);
+        timer = setInterval(draw, 3, x < n);
       }
     </script>
   </body>
