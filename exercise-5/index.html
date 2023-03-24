@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      #wrapper {
+        width: 50%;
+        margin: 10px;
+      }
+
+      .item_box {
+        border: 1px solid #999;
+        margin-bottom: 10px;
+        padding: 5px;
+      }
+
+      img {
+        height: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrapper">
+      <div class="item_box">
+        <h4 class="item_title">Чашка The Beatles</h4>
+        <img
+          src="https://content.rozetka.com.ua/goods/images/base_action/52906493.png"
+          alt=""
+        />
+        <p class="flow-text">Ціна: <span class="item_price">95</span>$</p>
+        <a class="waves-effect waves-light btn add_item" data-id="1"
+          >Додати в корзину</a
+        >
+      </div>
+      <div class="item_box">
+        <h4 class="item_title">Чашка Red Hot Chili Peppers</h4>
+        <img
+          src="https://futbokraina.com.ua/image/cache/new/catalog/GS/chashka-classic/white-chashka-38189.jpg"
+          alt=""
+        />
+        <p class="flow-text">Ціна: <span class="item_price">130</span>$</p>
+        <a class="waves-effect waves-light btn add_item" data-id="2"
+          >Додати в корзину</a
+        >
+      </div>
+      <div class="item_box">
+        <h4 class="item_title">Чашка Queen</h4>
+        <img
+          src="https://static.posters.cz/image/750/%D0%A7%D0%B0%D1%88%D0%BA%D0%B8/queen-forever-i157846.jpg"
+          alt=""
+        />
+        <p class="flow-text">Ціна: <span class="item_price">100</span>$</p>
+        <a class="waves-effect waves-light btn add_item" data-id="5"
+          >Додати в корзину</a
+        >
+      </div>
+      <p>
+        <a
+          href="./order.html"
+          class="waves-effect waves-light btn add_item red"
+          id="checkout"
+          >Оформити замовлення</a
+        >
+        &nbsp;
+        <a class="waves-effect waves-light btn add_item red" id="clear_cart"
+          >Очистити корзину</a
+        >
+      </p>
+    </div>
+    <script src="./script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <style>
+      #cart_content {
+        margin-top: 10px;
+        padding: 5px;
+        border: 1px solid lightseagreen;
+      }
+      .shopping_list {
+        width: 100%;
+        margin-top: 10px;
+        border-collapse: collapse;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="cart_content"></div>
+    <script>
+      let cartCont = document.getElementById("cart_content");
+      function countAm() {
+        let count = 0;
+        if (getCartData()) {
+          let cartData = getCartData();
+          for (const key in cartData) {
+            count += cartData[key][2];
+          }
+        }
+        return count;
+      }
+      function countPr() {
+        let count = 0;
+        if (getCartData()) {
+          let cartData = getCartData();
+          for (const key in cartData) {
+            count += cartData[key][1] * cartData[key][2];
+          }
+        }
+        return count;
+      }
+      function getCartData() {
+        return JSON.parse(localStorage.getItem("cart"));
+      }
+      function openCart() {
+        let cartData = getCartData(); // вытаскиваем все данные корзины
+        console.log(JSON.stringify(cartData));
+        if (cartData !== null) {
+          let cardTable = "";
+          cardTable =
+            '<table class="highlight shopping_list"><tr class="flow-text"><th>Назва</th><th>Ціна</th><th>Кількість</th></tr>';
+          for (let items in cartData) {
+            cardTable += "<tr>";
+            for (let i = 0; i < cartData[items].length; i++) {
+              cardTable += "<td>" + cartData[items][i] + "</td>";
+            }
+            cardTable += `</tr>`;
+          }
+          cardTable += `<tr style="font-weight:bold"><td>Сумарно:</td><td>${countPr()}</td><td>${countAm()}</td></tr>`;
+          cardTable += "<table>";
+          cartCont.innerHTML = cardTable;
+        } else {
+          cartCont.innerHTML = "В кошику пусто!";
+        }
+      }
+      openCart();
+    </script>
+  </body>
+</html>
