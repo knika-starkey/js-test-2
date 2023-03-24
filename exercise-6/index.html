@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- <style>
+      .id {
+        color: whitesmoke;
+      }
+    </style> -->
+  </head>
+  <body>
+    <canvas
+      id="myCanvas"
+      width="85"
+      height="540"
+      style="border: 1px solid #d3d3d3"
+    >
+      Your browser does not support the HTML5 canvas tag.</canvas
+    ><br /><button id="rand">Random</button>
+
+    <script>
+      let max = 29;
+      let step = 15;
+      let randB = document.getElementById("rand");
+      let c = document.getElementById("myCanvas");
+      let ctx = c.getContext("2d");
+      draw();
+      function draw(temp = 0) {
+        // BG
+        ctx.strokeStyle = "lightsteelblue";
+        ctx.beginPath();
+        ctx.roundRect(20, 20, 40, 500, [50]);
+        ctx.fillStyle = "aliceblue";
+        ctx.fill();
+        ctx.stroke();
+        //space
+        ctx.beginPath();
+        ctx.roundRect(35, 35, 10, 470, [50]);
+        ctx.fillStyle = "aliceblue";
+        ctx.fill();
+        ctx.stroke();
+        //temperature
+        ctx.strokeStyle = "indianred";
+        ctx.beginPath();
+        ctx.roundRect(35, 35 + temp, 10, 470 - temp, [50]);
+        ctx.fillStyle = "tomato";
+        ctx.fill();
+        ctx.stroke();
+        //circle
+        ctx.beginPath();
+        ctx.arc(40, 495, 10, 0, Math.PI * 2, false);
+        ctx.fill();
+        ctx.stroke();
+        // lines
+        for (let i = 0; i < max; i++) {
+          ctx.strokeStyle = "slategray";
+          ctx.beginPath();
+          ctx.roundRect(30, 55 + i * step, 20, 1, [50]);
+
+          ctx.fillStyle = "whitesmoke";
+          ctx.fill();
+          ctx.stroke();
+        }
+      }
+      randB.addEventListener("click", change);
+      function change() {
+        let n = Math.floor(Math.random() * (max * 15));
+        draw(n);
+      }
+    </script>
+  </body>
+</html>
