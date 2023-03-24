@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
   </head>
   <body>
     <select id="colorChoose"></select>
@@ -20,22 +21,27 @@
         "orange",
         "gold",
         "green",
+        "lightblue",
         "blue",
         "indigo",
-        "violet",
+        "darkviolet",
       ];
-      let selectBox = document.getElementById("colorChoose");
-      for (let i = 0; i < colors.length; i++) {
-        let option = document.createElement("option");
-        option.setAttribute("value", colors[i]);
-        option.appendChild(document.createTextNode(colors[i]));
-        selectBox.appendChild(option);
-      }
-
-      function paint() {
-        alert("a");
-      }
-      selectBox.addEventListener("change", paint);
+      $(function () {
+        let selectBox = document.getElementById("colorChoose");
+        for (let i = 0; i < colors.length; i++) {
+          let option = document.createElement("option");
+          option.setAttribute("value", colors[i]);
+          option.appendChild(document.createTextNode(colors[i]));
+          selectBox.appendChild(option);
+        }
+        $("#colorChoose").change(function () {
+          $("#text").css("color", $(this).val());
+          $("#text").css(
+            "background",
+            colors[colors.length - 1 - colors.indexOf($(this).val())]
+          );
+        });
+      });
     </script>
   </body>
 </html>
