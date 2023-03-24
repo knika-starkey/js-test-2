@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <select id="colorChoose"></select>
+    <div id="text">
+      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorum nihil
+      temporibus impedit, maxime iure nesciunt atque facere nostrum aut quam
+      architecto totam sed dicta? Dolore qui necessitatibus cupiditate aliquam
+      eligendi.
+    </div>
+    <script>
+      let colors = [
+        "red",
+        "orange",
+        "gold",
+        "green",
+        "blue",
+        "indigo",
+        "violet",
+      ];
+      let selectBox = document.getElementById("colorChoose");
+      for (let i = 0; i < colors.length; i++) {
+        let option = document.createElement("option");
+        option.setAttribute("value", colors[i]);
+        option.appendChild(document.createTextNode(colors[i]));
+        selectBox.appendChild(option);
+      }
+
+      function paint() {
+        alert("a");
+      }
+      selectBox.addEventListener("change", paint);
+    </script>
+  </body>
+</html>
